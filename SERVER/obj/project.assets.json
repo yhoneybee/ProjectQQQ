@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "PIDL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PIDL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PIDL.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PIDL/1.0.0": {
+      "type": "project",
+      "path": "../PIDL/PIDL.csproj",
+      "msbuildProject": "../PIDL/PIDL.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "PIDL >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\chaey\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj": {
+              "projectPath": "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
