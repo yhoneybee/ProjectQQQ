@@ -100,4 +100,9 @@ public class Client : MonoBehaviour
     }
 
     public void Connect() => netClient.Connect(param);
+
+    private void OnApplicationQuit()
+    {
+        netClient.Disconnect();
+    }
 }

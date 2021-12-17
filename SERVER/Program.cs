@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Nettention.Proud;
 using System.Linq;
@@ -92,6 +92,7 @@ class Program
 
     private static void OnLeaveServer(NetClientInfo clientInfo, ErrorInfo errorinfo, ByteArray comment)
     {
+        Console.WriteLine("LEAVE");
         return;
     }
 }
