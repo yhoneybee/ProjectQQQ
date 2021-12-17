@@ -1,0 +1,9 @@
+Loading - Asset Bunddle ( 에셋 번들 )로 리소스를 로딩 -> 리소스를 에셋 번들화 해서 저장
+Title - 게임 이름을 보여주고 회원가입 할것인가 로그인할것인가 결정
+Lobby - 방을 만들거나 입장할수있음, 채팅을 사용할수있음 ( ALL, PERSON )
+Room - 게임을 준비, 시작할수있음, 채팅을 사용할수있음 ( ALL, ROOM, PERSON )
+Ingame - 실제 게임을 플레이
+
+Loading -> Title -> Lobby <-> Room <-> Ingame
+
+Title <- Lobby ( Logout )

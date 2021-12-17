@@ -14,3 +14,12 @@ D:\private\folder\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.dll
 D:\private\folder\git\ProjectQQQ\SERVER\obj\Debug\net6.0\ref\SERVER.dll
 D:\private\folder\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.pdb
 D:\private\folder\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.genruntimeconfig.cache
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.deps.json
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.runtimeconfig.json
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.exe
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.dll
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\ProudDotNetClient.dll
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\ProudDotNetServer.dll
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.pdb
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\ProudDotNetClient.pdb
+D:\private\folder\git\ProjectQQQ\SERVER\bin\Debug\net6.0\ProudDotNetServer.pdb

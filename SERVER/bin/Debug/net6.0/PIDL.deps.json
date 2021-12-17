@@ -6,17 +6,11 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "SERVER/1.0.0": {
+      "PIDL/1.0.0": {
         "dependencies": {
-          "PIDL": "1.0.0",
           "ProudDotNetClient": "1.0.0.0",
           "ProudDotNetServer": "1.0.0.0"
         },
-        "runtime": {
-          "SERVER.dll": {}
-        }
-      },
-      "PIDL/1.0.0": {
         "runtime": {
           "PIDL.dll": {}
         }
@@ -40,11 +34,6 @@
     }
   },
   "libraries": {
-    "SERVER/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "PIDL/1.0.0": {
       "type": "project",
       "serviceable": false,
