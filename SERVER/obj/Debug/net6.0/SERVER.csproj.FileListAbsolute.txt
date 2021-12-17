@@ -1,0 +1,15 @@
+C:\git\SERVER\bin\Debug\net6.0\SERVER.exe
+C:\git\SERVER\bin\Debug\net6.0\SERVER.deps.json
+C:\git\SERVER\bin\Debug\net6.0\SERVER.runtimeconfig.json
+C:\git\SERVER\bin\Debug\net6.0\SERVER.dll
+C:\git\SERVER\bin\Debug\net6.0\ref\SERVER.dll
+C:\git\SERVER\bin\Debug\net6.0\SERVER.pdb
+C:\git\SERVER\obj\Debug\net6.0\SERVER.csproj.AssemblyReference.cache
+C:\git\SERVER\obj\Debug\net6.0\SERVER.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\SERVER\obj\Debug\net6.0\SERVER.AssemblyInfoInputs.cache
+C:\git\SERVER\obj\Debug\net6.0\SERVER.AssemblyInfo.cs
+C:\git\SERVER\obj\Debug\net6.0\SERVER.csproj.CoreCompileInputs.cache
+C:\git\SERVER\obj\Debug\net6.0\SERVER.dll
+C:\git\SERVER\obj\Debug\net6.0\ref\SERVER.dll
+C:\git\SERVER\obj\Debug\net6.0\SERVER.pdb
+C:\git\SERVER\obj\Debug\net6.0\SERVER.genruntimeconfig.cache
