@@ -5,7 +5,7 @@ using Nettention.Proud;
 
 public abstract class Singletone<T> : MonoBehaviour
 {
-    public static T Instance { get; protected set; }
+    public static T Instance { get; private set; }
 
     protected virtual void Awake()
     {

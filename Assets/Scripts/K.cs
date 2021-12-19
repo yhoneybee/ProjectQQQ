@@ -4,5 +4,4 @@ using UnityEngine;
 
 public static class K
 {
-    public static Client client;
 }

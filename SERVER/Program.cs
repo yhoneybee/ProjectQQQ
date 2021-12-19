@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Nettention.Proud;
 using System.Linq;
+using SERVER;
 
 class Program
 {
@@ -41,47 +42,48 @@ class Program
 
     private static bool OnSignUp(HostID remote, RmiContext rmiContext, string id, string nickName, string pw, string confirmPw)
     {
-        return false;
+        return true;
     }
 
     private static bool OnLogIn(HostID remote, RmiContext rmiContext, string id, string pw)
     {
-        return false;
+        proxy.LoginResult(remote, rmiContext, id, true);
+        return true;
     }
 
     private static bool OnChatToAll(HostID remote, RmiContext rmiContext, string id, string chat)
     {
-        return false;
+        return true;
     }
 
     private static bool OnChatToRoom(HostID remote, RmiContext rmiContext, string id, string roomId, string chat)
     {
-        return false;
+        return true;
     }
 
     private static bool OnChatToPerson(HostID remote, RmiContext rmiContext, string id, string targetId, string chat)
     {
-        return false;
+        return true;
     }
 
     private static bool OnCreateRoom(HostID remote, RmiContext rmiContext, string id, string roomName, string pw)
     {
-        return false;
+        return true;
     }
 
     private static bool OnGameReady(HostID remote, RmiContext rmiContext, string id, string roomName, bool isReady)
     {
-        return false;
+        return true;
     }
 
     private static bool OnGameStart(HostID remote, RmiContext rmiContext, string id, string roomName)
     {
-        return false;
+        return true;
     }
 
     private static bool OnRecordPosition(HostID remote, RmiContext rmiContext, string id, float x, float y, float z)
     {
-        return false;
+        return true;
     }
 
     private static void OnJoinServer(NetClientInfo clientInfo)
@@ -92,7 +94,6 @@ class Program
 
     private static void OnLeaveServer(NetClientInfo clientInfo, ErrorInfo errorinfo, ByteArray comment)
     {
-        Console.WriteLine("LEAVE");
         return;
     }
 }

@@ -7,14 +7,9 @@ using System;
 public class Client : MonoBehaviour
 {
     public NetClient netClient;
-    public C2S.Proxy proxy;
-    public S2C.Stub stub;
+    public static C2S.Proxy proxy;
+    public static S2C.Stub stub;
     private NetConnectionParam param;
-
-    private void Awake()
-    {
-        K.client = this;
-    }
 
     private void Start()
     {
@@ -41,53 +36,63 @@ public class Client : MonoBehaviour
         Connect();
     }
 
+    private void Update()
+    {
+        netClient.FrameMove();
+    }
+
     private bool OnSignUpResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
     {
-        return false;
+        return true;
     }
 
     private bool OnLoginResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
     {
-        return false;
+        if (isSuccess)
+        {
+            print("Success");
+        }
+        return true;
     }
 
     private bool OnEchoToAll(HostID remote, RmiContext rmiContext, string id, string chat)
     {
-        return false;
+        return true;
     }
 
     private bool OnEchoToRoom(HostID remote, RmiContext rmiContext, string id, string roomId, string chat)
     {
-        return false;
+        return true;
     }
 
     private bool OnEchoPerson(HostID remote, RmiContext rmiContext, string id, string targetId, string chat)
     {
-        return false;
+        return true;
     }
 
     private bool OnCreateRoomResult(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
     {
-        return false;
+        return true;
     }
 
     private bool OnGameReadyReflection(HostID remote, RmiContext rmiContext, string id, string roomName, bool isReady)
     {
-        return false;
+        return true;
     }
 
     private bool OnGameStartReflection(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
     {
-        return false;
+        return true;
     }
 
     private bool OnPositionReflection(HostID remote, RmiContext rmiContext, string id, string roomName, float x, float y, float z)
     {
-        return false;
+        return true;
     }
 
     private void OnJoinServer(ErrorInfo info, ByteArray replyFromServer)
     {
+        print("JOIN");
         return;
     }
 
@@ -99,7 +104,7 @@ public class Client : MonoBehaviour
         param.serverPort = 6475;
     }
 
-    public void Connect() => netClient.Connect(param);
+    public bool Connect() => netClient.Connect(param);
 
     private void OnApplicationQuit()
     {
