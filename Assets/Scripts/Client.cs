@@ -4,9 +4,16 @@ using UnityEngine;
 using Nettention.Proud;
 using System;
 
+public struct ClientInfo
+{
+    public string ID, nickName, PW;
+    public HostID hostID;
+    public int roomNum;
+}
+
 public class Client : MonoBehaviour
 {
-    public NetClient netClient;
+    public static NetClient netClient;
     public static C2S.Proxy proxy;
     public static S2C.Stub stub;
     private NetConnectionParam param;
@@ -39,6 +46,11 @@ public class Client : MonoBehaviour
     private void Update()
     {
         netClient.FrameMove();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, "HHHHHHHH");
+        }
     }
 
     private bool OnSignUpResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
@@ -51,6 +63,16 @@ public class Client : MonoBehaviour
         if (isSuccess)
         {
             print("Success");
+            K.popup.PopupWindow("", "Login Successful", true);
+            K.popup.onActiveChanged += (b) =>
+            {
+                K.SceneMove("Lobby");
+            };
+        }
+        else
+        {
+            print("Fail");
+            K.clientInfo = new ClientInfo();
         }
         return true;
     }
@@ -93,6 +115,7 @@ public class Client : MonoBehaviour
     private void OnJoinServer(ErrorInfo info, ByteArray replyFromServer)
     {
         print("JOIN");
+        K.clientInfo = new ClientInfo();
         return;
     }
 

@@ -25,6 +25,7 @@ public class TitleManager : Singletone<TitleManager>
                 print("<color=red>is UnMatched!</color>");
             }
             Client.proxy.LogIn(HostID.HostID_Server, RmiContext.ReliableSend, tmpInputID.text, tmpInputPW.text);
+            K.clientInfo = new ClientInfo { hostID = Client.netClient.GetLocalHostID(), ID = tmpInputID.text, nickName = "", PW = tmpInputPW.text, roomNum = -1 };
         });
     }
 

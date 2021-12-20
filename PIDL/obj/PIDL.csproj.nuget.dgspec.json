@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj": {}
+    "C:\\git\\ProjectQQQ\\PIDL\\PIDL.csproj": {}
   },
   "projects": {
-    "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj": {
+    "C:\\git\\ProjectQQQ\\PIDL\\PIDL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj",
+        "projectUniqueName": "C:\\git\\ProjectQQQ\\PIDL\\PIDL.csproj",
         "projectName": "PIDL",
-        "projectPath": "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\PIDL.csproj",
+        "projectPath": "C:\\git\\ProjectQQQ\\PIDL\\PIDL.csproj",
         "packagesPath": "C:\\Users\\chaey\\.nuget\\packages\\",
-        "outputPath": "D:\\private\\folder\\git\\ProjectQQQ\\PIDL\\obj\\",
+        "outputPath": "C:\\git\\ProjectQQQ\\PIDL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chaey\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

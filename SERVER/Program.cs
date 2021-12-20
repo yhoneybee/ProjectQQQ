@@ -34,6 +34,10 @@ class Program
         netServer.AttachStub(stub);
         netServer.Start(param);
 
+        Console.WriteLine("Server running...");
+        K.clients.Add(new Client(HostID.HostID_None, "admin1", "admin1", "1234"));
+        K.clients.Add(new Client(HostID.HostID_None, "admin2", "admin2", "1234"));
+
         while (true)
         {
 
@@ -42,17 +46,37 @@ class Program
 
     private static bool OnSignUp(HostID remote, RmiContext rmiContext, string id, string nickName, string pw, string confirmPw)
     {
+        var find = K.clients.Find(x => x.ID == id);
+        bool isSuccess = false;
+        if (find == null)
+        {
+            Client client = new Client(remote, id, nickName, pw);
+            isSuccess = pw == confirmPw;
+        }
+        proxy.SignUpResult(remote, rmiContext, id, isSuccess);
         return true;
     }
 
     private static bool OnLogIn(HostID remote, RmiContext rmiContext, string id, string pw)
     {
-        proxy.LoginResult(remote, rmiContext, id, true);
+        var find = K.clients.Find(x => x.ID == id);
+        bool isSuccess = false;
+        if (find != null)
+        {
+            find.hostID = remote;
+            isSuccess = find.ID == id && find.PW == pw;
+        }
+        proxy.LoginResult(remote, rmiContext, id, isSuccess);
         return true;
     }
 
     private static bool OnChatToAll(HostID remote, RmiContext rmiContext, string id, string chat)
     {
+        var find = K.clients.Find(x => x.ID == id);
+        string show = find.nickName == "" ? find.ID : find.nickName;
+        Console.WriteLine($"(ALL)[ {show} ] : {chat}");
+        foreach (var client in K.clients)
+            proxy.EchoToAll(client.hostID, rmiContext, id, chat);
         return true;
     }
 
