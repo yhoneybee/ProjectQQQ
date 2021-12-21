@@ -46,3 +46,4 @@ C:\git\ProjectQQQ\SERVER\bin\Debug\net6.0\ProudDotNetServer.dll
 C:\git\ProjectQQQ\SERVER\bin\Debug\net6.0\PIDL.pdb
 C:\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.csproj.CopyComplete
 C:\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.genruntimeconfig.cache
+D:\private\folder\git\ProjectQQQ\SERVER\obj\Debug\net6.0\SERVER.csproj.CopyComplete
