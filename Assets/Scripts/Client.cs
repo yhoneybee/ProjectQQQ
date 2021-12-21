@@ -9,6 +9,8 @@ public struct ClientInfo
     public string ID, nickName, PW;
     public HostID hostID;
     public int roomNum;
+
+    public string GetNickName() => nickName == "" ? ID : nickName;
 }
 
 public class Client : MonoBehaviour
@@ -46,11 +48,6 @@ public class Client : MonoBehaviour
     private void Update()
     {
         netClient.FrameMove();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, "HHHHHHHH");
-        }
     }
 
     private bool OnSignUpResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
