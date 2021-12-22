@@ -10,7 +10,7 @@ public static class K
     public static Popup popup;
     public static Fade fade;
     public static Chat chat;
-
+    public static Trie command;
     public static void SceneMove(string name)
     {
         fade.imgFade.DOFade(1, 1.5f).onComplete = () =>

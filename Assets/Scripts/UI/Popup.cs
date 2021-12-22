@@ -10,7 +10,7 @@ public class Popup : MonoBehaviour
 {
     public TextMeshProUGUI txtHead;
     public TextMeshProUGUI txtBody;
-    public event Action<bool> onActiveChanged;
+    public Action<bool> onActiveChanged;
 
     private void Awake()
     {

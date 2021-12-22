@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Nettention.Proud;
 using System;
+using DG.Tweening;
 
 public struct ClientInfo
 {
-    public string ID, nickName, PW;
+    public string ID, PW;
     public HostID hostID;
     public int roomNum;
-
-    public string GetNickName() => nickName == "" ? ID : nickName;
 }
 
 public class Client : MonoBehaviour
@@ -19,6 +18,11 @@ public class Client : MonoBehaviour
     public static C2S.Proxy proxy;
     public static S2C.Stub stub;
     private NetConnectionParam param;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -52,18 +56,13 @@ public class Client : MonoBehaviour
 
     private bool OnSignUpResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
     {
-        return true;
-    }
-
-    private bool OnLoginResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
-    {
         if (isSuccess)
         {
             print("Success");
-            K.popup.PopupWindow("", "Login Successful", true);
-            K.popup.onActiveChanged += (b) =>
+            K.popup.PopupWindow("", "Sign Successful", true);
+            K.popup.onActiveChanged = (b) =>
             {
-                K.SceneMove("Lobby");
+                TitleManager.Instance.SwitchLoginSign();
             };
         }
         else
@@ -74,8 +73,29 @@ public class Client : MonoBehaviour
         return true;
     }
 
+    private bool OnLoginResult(HostID remote, RmiContext rmiContext, string id, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            print("Success");
+            K.popup.PopupWindow("", "Login Successful", true);
+            K.popup.onActiveChanged = (b) =>
+            {
+                K.SceneMove("Lobby");
+            };
+        }
+        else
+        {
+            print("Fail");
+            K.clientInfo = new ClientInfo();
+            TitleManager.Instance.rtrnBtnsParent.DOAnchorPosY(-100, 0.5f);
+        }
+        return true;
+    }
+
     private bool OnEchoToAll(HostID remote, RmiContext rmiContext, string id, string chat)
     {
+        K.chat.EchoChat(chat);
         return true;
     }
 
@@ -120,7 +140,7 @@ public class Client : MonoBehaviour
     {
         param = new NetConnectionParam();
         param.protocolVersion = new Nettention.Proud.Guid("{2256FFC1-99F9-48DA-8A27-E18D61954A00}");
-        param.serverIP = "127.0.0.1";
+        param.serverIP = "192.168.30.25";
         param.serverPort = 6475;
     }
 

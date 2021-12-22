@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using Nettention.Proud;
+using DG.Tweening;
 
 public enum eCHAT_LEVEL
 {
@@ -15,6 +18,7 @@ public struct Command
 {
     public string cmd;
     public string desc;
+    public event Action onExcution;
 }
 
 public class Chat : MonoBehaviour
@@ -34,29 +38,94 @@ public class Chat : MonoBehaviour
             };
         }
     }
+    public bool IsChatLog
+    {
+        get => isChatLog;
+        set
+        {
+            isChatLog = value;
+            inputChat.text = "";
+            if (isChatLog) srtChat.GetComponent<RectTransform>().DOSizeDelta(Vector2.up * SHOW_LOG_HEIGHT, 1);
+            else srtChat.GetComponent<RectTransform>().DOSizeDelta(Vector2.zero, 1);
+        }
+    }
 
     public TMP_InputField inputChat;
     public TextMeshProUGUI txtChatLevel;
+    public RectTransform rtrnContent;
+    public TextMeshProUGUI originTxtChat;
+    public ScrollRect srtChat;
 
     private eCHAT_LEVEL chatLevel;
+    private bool isChatLog;
+    private readonly float SHOW_LOG_HEIGHT = 327.56f;
 
     private void Awake()
     {
         K.chat = this;
         ChatLevel = eCHAT_LEVEL.All;
 
-        var trie = Trie.Get("apple", "appee");
+        K.command = Trie.Get("apple", "appee");
 
         inputChat.onValueChanged.AddListener((s) =>
         {
             if (s.StartsWith("/"))
             {
                 s = s.Substring(1);
-                if (trie.Find(s))
+                if (K.command.Find(s))
                 {
                     print("FIND!");
                 }
             }
         });
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            Chatting();
+
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.C))
+            IsChatLog = !IsChatLog;
+    }
+
+    public void EchoChat(string chat)
+    {
+        var obj = Instantiate(originTxtChat, rtrnContent, false);
+        obj.text = chat;
+        srtChat.verticalScrollbar.value = 0;
+    }
+
+    public void Chatting()
+    {
+        if (inputChat.text == "" || inputChat.text.StartsWith("/"))
+        {
+            inputChat.text = "";
+            return;
+        }
+        string chat = $"{txtChatLevel.text}[ {K.clientInfo.ID} ] : {inputChat.text}";
+        inputChat.text = "";
+
+        List<string> strs = new List<string>();
+        int oneLineWordCount = 45;
+        int loopCount = (chat.Length - 1) / oneLineWordCount;
+
+        for (int i = 0; i < loopCount; i++)
+            strs.Add(chat.Substring(i * oneLineWordCount, oneLineWordCount - 1));
+        strs.Add(chat.Substring(loopCount * oneLineWordCount));
+
+        foreach (var str in strs)
+        {
+            switch (ChatLevel)
+            {
+                case eCHAT_LEVEL.All:
+                    Client.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
+                    break;
+                case eCHAT_LEVEL.Room:
+                    break;
+                case eCHAT_LEVEL.Person:
+                    break;
+            }
+        }
     }
 }
