@@ -58,7 +58,7 @@ public class Chat : MonoBehaviour
 
     private eCHAT_LEVEL chatLevel;
     private bool isChatLog;
-    private readonly float SHOW_LOG_HEIGHT = 327.56f;
+    private readonly float SHOW_LOG_HEIGHT = 1007.6f;
 
     private void Awake()
     {
@@ -67,24 +67,14 @@ public class Chat : MonoBehaviour
 
         K.command = Trie.Get("apple", "appee");
 
-        inputChat.onValueChanged.AddListener((s) =>
+        inputChat.onSubmit.AddListener((s) =>
         {
-            if (s.StartsWith("/"))
-            {
-                s = s.Substring(1);
-                if (K.command.Find(s))
-                {
-                    print("FIND!");
-                }
-            }
+            Chatting();
         });
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-            Chatting();
-
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.C))
             IsChatLog = !IsChatLog;
     }

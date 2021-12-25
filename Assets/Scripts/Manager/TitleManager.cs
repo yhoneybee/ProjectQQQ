@@ -55,6 +55,7 @@ public class TitleManager : Singletone<TitleManager>
 
     public void SwitchLoginSign()
     {
+        print("Switch");
         bool login = rtrnLoginParent.gameObject.activeSelf;
         bool sign = rtrnSignupParent.gameObject.activeSelf;
         rtrnLoginParent.gameObject.SetActive(sign);
