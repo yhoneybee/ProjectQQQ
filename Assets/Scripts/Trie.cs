@@ -44,6 +44,15 @@ public class Trie
         return level.isEnd;
     }
 
+    public List<string> Search(string word)
+    {
+        List<string> result = new List<string>();
+
+
+
+        return result;
+    }
+
     public static Trie Get(params string[] arrStr)
     {
         Trie root = new Trie();
