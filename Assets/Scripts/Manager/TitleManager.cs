@@ -48,7 +48,7 @@ public class TitleManager : Singletone<TitleManager>
         {
             if (sign.tmpInputPW.text != sign.tmpInputConfirmPW.text) return;
 
-            Client.proxy.SignUp(HostID.HostID_Server, RmiContext.ReliableSend, sign.tmpInputID.text, "", sign.tmpInputPW.text, sign.tmpInputConfirmPW.text);
+            Client.proxy.SignUp(HostID.HostID_Server, RmiContext.ReliableSend, sign.tmpInputID.text, sign.tmpInputPW.text, sign.tmpInputConfirmPW.text);
             K.clientInfo = new ClientInfo { hostID = Client.netClient.GetLocalHostID(), ID = sign.tmpInputID.text, PW = sign.tmpInputPW.text, roomNum = -1 };
         });
     }
