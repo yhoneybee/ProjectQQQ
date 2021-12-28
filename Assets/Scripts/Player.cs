@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Instantiate(bullet, vcam.transform.position, vcam.transform.rotation);
         }

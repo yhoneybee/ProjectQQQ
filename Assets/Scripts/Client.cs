@@ -40,6 +40,7 @@ public class Client : MonoBehaviour
         stub.GameReadyReflection = OnGameReadyReflection;
         stub.GameStartReflection = OnGameStartReflection;
         stub.PositionReflection = OnPositionReflection;
+        stub.GetRoomDatas = OnGetRoomDatas;
 
         netClient.JoinServerCompleteHandler = OnJoinServer;
 
@@ -115,19 +116,24 @@ public class Client : MonoBehaviour
         return true;
     }
 
-    private bool OnGameReadyReflection(HostID remote, RmiContext rmiContext, string id, string roomName, bool isReady)
+    private bool OnGameReadyReflection(HostID remote, RmiContext rmiContext, string id)
     {
         return true;
     }
 
-    private bool OnGameStartReflection(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
+    private bool OnGameStartReflection(HostID remote, RmiContext rmiContext, string id)
     {
         return true;
     }
 
-    private bool OnPositionReflection(HostID remote, RmiContext rmiContext, string id, string roomName, float x, float y, float z)
+    private bool OnPositionReflection(HostID remote, RmiContext rmiContext, string id, float x, float y, float z)
     {
         return true;
+    }
+
+    private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnJoinServer(ErrorInfo info, ByteArray replyFromServer)
