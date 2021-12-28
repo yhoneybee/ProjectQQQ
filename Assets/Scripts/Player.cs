@@ -33,9 +33,9 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bullet, vcam.transform.position, vcam.transform.rotation);
+            ObjPool.GetObj(vcam.transform.position, vcam.transform.rotation, ObjPool.Instance.transform);
         }
 
         isJumping = !Physics.Raycast(transform.position + Vector3.down * 1.4f, Vector3.down, 0.2f, LayerMask.GetMask("Ground"));
