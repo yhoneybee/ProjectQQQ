@@ -16,6 +16,6 @@ public class IngameManager : Singletone<IngameManager>
 
     void Update()
     {
-        //Client.proxy.RecordPosition(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
+        Client.proxy.RecordPosition(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
     }
 }

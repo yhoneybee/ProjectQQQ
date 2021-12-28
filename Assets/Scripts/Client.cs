@@ -133,7 +133,7 @@ public class Client : MonoBehaviour
 
     private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
     {
-        throw new NotImplementedException();
+        return true;
     }
 
     private void OnJoinServer(ErrorInfo info, ByteArray replyFromServer)
