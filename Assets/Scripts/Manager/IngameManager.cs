@@ -6,10 +6,11 @@ using Nettention.Proud;
 public class IngameManager : Singletone<IngameManager>
 {
     public Player player1;
-    public Player player2;
+    public Dictionary<string, Player> playerPairs;
 
     void Start()
     {
+        playerPairs = new Dictionary<string, Player>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
