@@ -4,6 +4,7 @@ using UnityEngine;
 using Nettention.Proud;
 using System;
 using DG.Tweening;
+using Newtonsoft.Json;
 
 public struct ClientInfo
 {
@@ -37,10 +38,13 @@ public class Client : MonoBehaviour
         stub.EchoToRoom = OnEchoToRoom;
         stub.EchoToPerson = OnEchoPerson;
         stub.CreateRoomResult = OnCreateRoomResult;
+        stub.EnterRoomResult = OnEnterRoomResult;
         stub.GameReadyReflection = OnGameReadyReflection;
         stub.GameStartReflection = OnGameStartReflection;
         stub.PositionReflection = OnPositionReflection;
         stub.GetRoomDatas = OnGetRoomDatas;
+        stub.GetClientDatas = OnGetClientDatas;
+        stub.NotifyPosition = OnNotifyPosition;
 
         netClient.JoinServerCompleteHandler = OnJoinServer;
 
@@ -116,6 +120,11 @@ public class Client : MonoBehaviour
         return true;
     }
 
+    private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
+    {
+        return true;
+    }
+
     private bool OnGameReadyReflection(HostID remote, RmiContext rmiContext, string id)
     {
         return true;
@@ -132,6 +141,18 @@ public class Client : MonoBehaviour
     }
 
     private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
+    {
+        K.rooms = JsonConvert.DeserializeObject<Serialization<Room>>(json).target;
+        return true;
+    }
+
+    private bool OnGetClientDatas(HostID remote, RmiContext rmiContext, string json)
+    {
+        K.clients = JsonConvert.DeserializeObject<Serialization<Client>>(json).target;
+        return true;
+    }
+
+    private bool OnNotifyPosition(HostID remote, RmiContext rmiContext, string id, float x, float y, float z)
     {
         return true;
     }
