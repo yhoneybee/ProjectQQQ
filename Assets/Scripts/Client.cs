@@ -168,8 +168,9 @@ public class Client : MonoBehaviour
     {
         param = new NetConnectionParam();
         param.protocolVersion = new Nettention.Proud.Guid("{2256FFC1-99F9-48DA-8A27-E18D61954A00}");
-        param.serverIP = "127.0.0.1";
+        //param.serverIP = "127.0.0.1";
         //param.serverIP = "192.168.30.25";
+        param.serverIP = "192.168.1.222";
         param.serverPort = 6475;
     }
 
