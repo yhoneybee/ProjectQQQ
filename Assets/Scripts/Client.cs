@@ -116,12 +116,12 @@ public class Client : MonoBehaviour
         return true;
     }
 
-    private bool OnCreateRoomResult(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
+    private bool OnCreateRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
         return true;
     }
 
-    private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
+    private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
         return true;
     }
@@ -174,9 +174,9 @@ public class Client : MonoBehaviour
     {
         param = new NetConnectionParam();
         param.protocolVersion = new Nettention.Proud.Guid("{2256FFC1-99F9-48DA-8A27-E18D61954A00}");
-        //param.serverIP = "127.0.0.1";
+        param.serverIP = "127.0.0.1";
         //param.serverIP = "192.168.30.25";
-        param.serverIP = "192.168.1.222";
+        //param.serverIP = "119.196.245.41";
         param.serverPort = 6475;
     }
 
