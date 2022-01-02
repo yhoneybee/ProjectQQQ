@@ -39,6 +39,7 @@ public class Client : MonoBehaviour
         stub.EchoToPerson = OnEchoPerson;
         stub.CreateRoomResult = OnCreateRoomResult;
         stub.EnterRoomResult = OnEnterRoomResult;
+        stub.ExitRoomResult = OnExitRoomResult;
         stub.GameReadyReflection = OnGameReadyReflection;
         stub.GameStartReflection = OnGameStartReflection;
         stub.PositionReflection = OnPositionReflection;
@@ -121,6 +122,11 @@ public class Client : MonoBehaviour
     }
 
     private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomName, bool isSuccess)
+    {
+        return true;
+    }
+
+    private bool OnExitRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
         return true;
     }
