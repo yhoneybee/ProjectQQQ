@@ -154,7 +154,7 @@ public class Client : MonoBehaviour
 
     private bool OnGetClientDatas(HostID remote, RmiContext rmiContext, string json)
     {
-        K.clients = JsonConvert.DeserializeObject<Serialization<Client>>(json).target;
+        K.users = JsonConvert.DeserializeObject<Serialization<Client>>(json).target;
         return true;
     }
 
