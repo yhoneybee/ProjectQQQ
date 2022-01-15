@@ -13,7 +13,7 @@ public static class K
     public static Chat chat;
     public static Trie command;
     public static List<Room> rooms;
-    public static List<Client> users;
+    public static List<User> users;
     public static void SceneMove(string name)
     {
         fade.imgFade.DOFade(1, 1.5f).onComplete = () =>

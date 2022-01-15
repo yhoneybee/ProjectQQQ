@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-using PooledObj = Bullet;
+using PooledObj = UnityEngine.GameObject;
 
 public class ObjPool : Singletone<ObjPool>
 {

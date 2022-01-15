@@ -13,5 +13,5 @@ public class Room
     }
     public string name, pw;
     public int num;
-    public List<Client> clients = new List<Client>();
+    public List<User> clients = new List<User>();
 }

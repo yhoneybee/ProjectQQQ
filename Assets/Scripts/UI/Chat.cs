@@ -109,7 +109,7 @@ public class Chat : MonoBehaviour
             switch (ChatLevel)
             {
                 case eCHAT_LEVEL.All:
-                    Client.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
+                    User.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
                     break;
                 case eCHAT_LEVEL.Room:
                     break;

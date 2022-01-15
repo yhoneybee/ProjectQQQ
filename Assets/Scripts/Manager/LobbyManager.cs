@@ -7,7 +7,7 @@ public class LobbyManager : Singletone<LobbyManager>
 {
     private void Start()
     {
-        Client.proxy.GetRoomDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
+        User.proxy.GetRoomDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
     }
 
     private void Update()
