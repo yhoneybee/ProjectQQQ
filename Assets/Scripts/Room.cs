@@ -12,6 +12,7 @@ public class Room
         this.pw = pw;
     }
     public string name, pw;
-    public int num;
-    public List<User> clients = new List<User>();
+    public int id;
+    public bool isPlaying;
+    public List<UserInfo> clients = new List<UserInfo>();
 }

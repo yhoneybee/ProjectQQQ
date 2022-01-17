@@ -12,8 +12,8 @@ public static class K
     public static Fade fade;
     public static Chat chat;
     public static Trie command;
-    public static List<Room> rooms;
-    public static List<User> users;
+    public static List<Room> rooms = new List<Room>();
+    public static List<UserInfo> users = new List<UserInfo>();
     public static void SceneMove(string name)
     {
         fade.imgFade.DOFade(1, 1.5f).onComplete = () =>

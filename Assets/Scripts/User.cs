@@ -8,9 +8,13 @@ using Newtonsoft.Json;
 
 public struct UserInfo
 {
+    public float pX, pY, pZ;
+    public float rX, rY, rZ;
+    public bool isReady;
+    public bool isHost;
     public string ID, PW;
     public HostID hostID;
-    public string roomID;
+    public int roomID;
 }
 
 public class User : MonoBehaviour
@@ -88,6 +92,7 @@ public class User : MonoBehaviour
             K.popup.PopupWindow("", "Login Successful", true);
             K.popup.onActiveChanged = (b) =>
             {
+                proxy.GetRoomDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
                 K.SceneMove("Lobby");
             };
         }
@@ -120,12 +125,14 @@ public class User : MonoBehaviour
 
     private bool OnCreateRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
-        return true;
+        if (isSuccess) LobbyManager.Instance.CreateRoom(roomId);
+        return isSuccess;
     }
 
     private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
-        return true;
+        /*if (isSuccess)*/ LobbyManager.Instance.EnterRoom(roomId);
+        return isSuccess;
     }
 
     private bool OnExitRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
@@ -151,7 +158,7 @@ public class User : MonoBehaviour
 
     private bool OnGetClientDatas(HostID remote, RmiContext rmiContext, string json)
     {
-        K.users = JsonConvert.DeserializeObject<Serialization<User>>(json).target;
+        K.users = JsonConvert.DeserializeObject<Serialization<UserInfo>>(json).target;
         return true;
     }
 

@@ -118,10 +118,10 @@ public class Chat : MonoBehaviour
                     User.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
                     break;
                 case eCHAT_LEVEL.Room:
-                    Client.proxy.ChatToRoom(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, K.clientInfo.roomID, str);
+                    User.proxy.ChatToRoom(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, K.clientInfo.roomID.ToString(), str);
                     break;
                 case eCHAT_LEVEL.Person:
-                    Client.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
+                    User.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
                     break;
             }
         }
