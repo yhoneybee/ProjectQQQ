@@ -40,16 +40,16 @@ public class TitleManager : Singletone<TitleManager>
         {
             //isPassCheck(login.tmpInputPW.text);
 
-            User.proxy.LogIn(HostID.HostID_Server, RmiContext.ReliableSend, login.tmpInputID.text, login.tmpInputPW.text);
-            K.clientInfo = new ClientInfo { hostID = User.netClient.GetLocalHostID(), ID = login.tmpInputID.text, PW = login.tmpInputPW.text, roomNum = -1 };
+            Client.proxy.LogIn(HostID.HostID_Server, RmiContext.ReliableSend, login.tmpInputID.text, login.tmpInputPW.text);
+            K.clientInfo = new UserInfo { hostID = Client.netClient.GetLocalHostID(), ID = login.tmpInputID.text, PW = login.tmpInputPW.text, roomID = "-1" };
         });
 
         sign.btnTry.onClick.AddListener(() =>
         {
             if (sign.tmpInputPW.text != sign.tmpInputConfirmPW.text) return;
 
-            User.proxy.SignUp(HostID.HostID_Server, RmiContext.ReliableSend, sign.tmpInputID.text, sign.tmpInputPW.text, sign.tmpInputConfirmPW.text);
-            K.clientInfo = new ClientInfo { hostID = User.netClient.GetLocalHostID(), ID = sign.tmpInputID.text, PW = sign.tmpInputPW.text, roomNum = -1 };
+            Client.proxy.SignUp(HostID.HostID_Server, RmiContext.ReliableSend, sign.tmpInputID.text, sign.tmpInputPW.text, sign.tmpInputConfirmPW.text);
+            K.clientInfo = new UserInfo { hostID = Client.netClient.GetLocalHostID(), ID = sign.tmpInputID.text, PW = sign.tmpInputPW.text, roomID = "-1" };
         });
     }
 

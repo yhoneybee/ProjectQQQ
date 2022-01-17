@@ -6,11 +6,11 @@ using System;
 using DG.Tweening;
 using Newtonsoft.Json;
 
-public struct ClientInfo
+public struct UserInfo
 {
     public string ID, PW;
     public HostID hostID;
-    public int roomNum;
+    public string roomID;
 }
 
 public class User : MonoBehaviour
@@ -42,10 +42,10 @@ public class User : MonoBehaviour
         stub.ExitRoomResult = OnExitRoomResult;
         stub.GameReadyReflection = OnGameReadyReflection;
         stub.GameStartReflection = OnGameStartReflection;
-        stub.PositionReflection = OnPositionReflection;
         stub.GetRoomDatas = OnGetRoomDatas;
         stub.GetClientDatas = OnGetClientDatas;
         stub.NotifyPosition = OnNotifyPosition;
+        stub.NotifyRotation = OnNotifyRotation;
 
         netClient.JoinServerCompleteHandler = OnJoinServer;
 
@@ -75,7 +75,7 @@ public class User : MonoBehaviour
         else
         {
             print("Fail");
-            K.clientInfo = new ClientInfo();
+            K.clientInfo = new UserInfo();
         }
         return true;
     }
@@ -94,7 +94,7 @@ public class User : MonoBehaviour
         else
         {
             print("Fail");
-            K.clientInfo = new ClientInfo();
+            K.clientInfo = new UserInfo();
             TitleManager.Instance.rtrnBtnsParent.DOAnchorPosY(-100, 0.5f);
         }
         return true;
@@ -102,17 +102,19 @@ public class User : MonoBehaviour
 
     private bool OnEchoToAll(HostID remote, RmiContext rmiContext, string id, string chat)
     {
-        K.chat.EchoChat(chat);
+        K.chat.EchoChat(chat, Color.black);
         return true;
     }
 
     private bool OnEchoToRoom(HostID remote, RmiContext rmiContext, string id, string roomId, string chat)
     {
+        K.chat.EchoChat(chat, Color.cyan);
         return true;
     }
 
     private bool OnEchoPerson(HostID remote, RmiContext rmiContext, string id, string targetId, string chat)
     {
+        K.chat.EchoChat(chat, Color.green);
         return true;
     }
 
@@ -141,11 +143,6 @@ public class User : MonoBehaviour
         return true;
     }
 
-    private bool OnPositionReflection(HostID remote, RmiContext rmiContext, string id, float x, float y, float z)
-    {
-        return true;
-    }
-
     private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
     {
         K.rooms = JsonConvert.DeserializeObject<Serialization<Room>>(json).target;
@@ -163,10 +160,15 @@ public class User : MonoBehaviour
         return true;
     }
 
+    private bool OnNotifyRotation(HostID remote, RmiContext rmiContext, string id, float x, float y, float z)
+    {
+        return true;
+    }
+
     private void OnJoinServer(ErrorInfo info, ByteArray replyFromServer)
     {
         print("JOIN");
-        K.clientInfo = new ClientInfo();
+        K.clientInfo = new UserInfo();
         return;
     }
 
@@ -174,9 +176,9 @@ public class User : MonoBehaviour
     {
         param = new NetConnectionParam();
         param.protocolVersion = new Nettention.Proud.Guid("{2256FFC1-99F9-48DA-8A27-E18D61954A00}");
-        param.serverIP = "127.0.0.1";
+        //param.serverIP = "127.0.0.1";
         //param.serverIP = "192.168.30.25";
-        //param.serverIP = "119.196.245.41";
+        param.serverIP = "119.196.245.41";
         param.serverPort = 6475;
     }
 

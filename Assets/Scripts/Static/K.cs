@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public static class K
 {
-    public static ClientInfo clientInfo;
+    public static UserInfo clientInfo;
     public static Popup popup;
     public static Fade fade;
     public static Chat chat;
