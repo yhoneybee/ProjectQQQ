@@ -41,7 +41,7 @@ public class TitleManager : Singletone<TitleManager>
             //isPassCheck(login.tmpInputPW.text);
 
             Client.proxy.LogIn(HostID.HostID_Server, RmiContext.ReliableSend, login.tmpInputID.text, login.tmpInputPW.text);
-            K.clientInfo = new ClientInfo { hostID = Client.netClient.GetLocalHostID(), ID = login.tmpInputID.text, PW = login.tmpInputPW.text, roomNum = -1 };
+            K.clientInfo = new UserInfo { hostID = Client.netClient.GetLocalHostID(), ID = login.tmpInputID.text, PW = login.tmpInputPW.text, roomID = "-1" };
         });
 
         sign.btnTry.onClick.AddListener(() =>
@@ -49,7 +49,7 @@ public class TitleManager : Singletone<TitleManager>
             if (sign.tmpInputPW.text != sign.tmpInputConfirmPW.text) return;
 
             Client.proxy.SignUp(HostID.HostID_Server, RmiContext.ReliableSend, sign.tmpInputID.text, sign.tmpInputPW.text, sign.tmpInputConfirmPW.text);
-            K.clientInfo = new ClientInfo { hostID = Client.netClient.GetLocalHostID(), ID = sign.tmpInputID.text, PW = sign.tmpInputPW.text, roomNum = -1 };
+            K.clientInfo = new UserInfo { hostID = Client.netClient.GetLocalHostID(), ID = sign.tmpInputID.text, PW = sign.tmpInputPW.text, roomID = "-1" };
         });
     }
 

@@ -79,10 +79,11 @@ public class Chat : MonoBehaviour
             IsChatLog = !IsChatLog;
     }
 
-    public void EchoChat(string chat)
+    public void EchoChat(string chat, Color color)
     {
         var obj = Instantiate(originTxtChat, rtrnContent, false);
         obj.text = chat;
+        obj.color = color;
         srtChat.verticalScrollbar.value = 0;
     }
 
@@ -93,8 +94,13 @@ public class Chat : MonoBehaviour
             inputChat.text = "";
             return;
         }
+        if (inputChat.text.StartsWith("@"))
+        {
+
+        }
         string chat = $"{txtChatLevel.text}[ {K.clientInfo.ID} ] : {inputChat.text}";
         inputChat.text = "";
+        inputChat.Select();
 
         List<string> strs = new List<string>();
         int oneLineWordCount = 45;
@@ -112,8 +118,10 @@ public class Chat : MonoBehaviour
                     Client.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
                     break;
                 case eCHAT_LEVEL.Room:
+                    Client.proxy.ChatToRoom(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, K.clientInfo.roomID, str);
                     break;
                 case eCHAT_LEVEL.Person:
+                    Client.proxy.ChatToAll(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID, str);
                     break;
             }
         }
