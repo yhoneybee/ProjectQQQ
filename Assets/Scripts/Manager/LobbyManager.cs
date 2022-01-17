@@ -28,8 +28,8 @@ public class LobbyManager : Singletone<LobbyManager>
 
     private void FixedUpdate()
     {
-        User.proxy.GetRoomDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
         User.proxy.GetClientDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
+        User.proxy.GetRoomDatas(HostID.HostID_Server, RmiContext.ReliableSend, K.clientInfo.ID);
     }
 
     public void CreateRoom(string roomId)

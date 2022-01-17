@@ -5,6 +5,7 @@ using Nettention.Proud;
 using System;
 using DG.Tweening;
 using Newtonsoft.Json;
+using System.Linq;
 
 public struct UserInfo
 {
@@ -131,7 +132,7 @@ public class User : MonoBehaviour
 
     private bool OnEnterRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
-        /*if (isSuccess)*/ LobbyManager.Instance.EnterRoom(roomId);
+        if (isSuccess) LobbyManager.Instance.EnterRoom(roomId);
         return isSuccess;
     }
 
@@ -152,7 +153,12 @@ public class User : MonoBehaviour
 
     private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
     {
+        var users = K.rooms.Select(x => x.clients);
         K.rooms = JsonConvert.DeserializeObject<Serialization<Room>>(json).target;
+        for (int i = 0; i < K.rooms.Count; i++)
+        {
+            K.rooms[i].clients = users.ElementAt(i);
+        }
         return true;
     }
 
