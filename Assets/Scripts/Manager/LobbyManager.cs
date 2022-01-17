@@ -36,6 +36,8 @@ public class LobbyManager : Singletone<LobbyManager>
     {
         var room = new Room(inputName.text, inputPW.text);
         room.id = System.Convert.ToInt32(roomId);
+        var obj = Instantiate(originRoomViewer, roomViewersParent);
+        obj.roomId = room.id;
         K.rooms.Add(room);
         EnterRoom(roomId);
     }

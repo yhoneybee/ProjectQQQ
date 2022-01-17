@@ -153,11 +153,13 @@ public class User : MonoBehaviour
 
     private bool OnGetRoomDatas(HostID remote, RmiContext rmiContext, string json)
     {
-        var users = K.rooms.Select(x => x.clients);
         K.rooms = JsonConvert.DeserializeObject<Serialization<Room>>(json).target;
-        for (int i = 0; i < K.rooms.Count; i++)
+        if (K.users.Count <= 0) return true;
+        List<UserInfo> user;
+        foreach (var room in K.rooms)
         {
-            K.rooms[i].clients = users.ElementAt(i);
+            user = K.users.FindAll(x => x.roomID == room.id);
+            room.clients.AddRange(user);
         }
         return true;
     }
