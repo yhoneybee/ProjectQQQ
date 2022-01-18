@@ -47,6 +47,7 @@ public class LobbyManager : Singletone<LobbyManager>
         var room = K.rooms.Find(x => x.id == System.Convert.ToInt32(roomId));
         var user = K.users.Find(x => x.ID == K.clientInfo.ID);
         room.clients.Add(user);
-        // TODO : LobbyManager에서 방으로 옮겨줘야함
+        K.clientInfo.roomID = room.id;
+        K.SceneMove("Room");
     }
 }

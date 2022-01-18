@@ -19,7 +19,11 @@ public class RoomView : MonoBehaviour
     private void FixedUpdate()
     {
         var room = K.rooms.Find(x => x.id == roomId);
+        if (K.rooms.Find(x => x.id == room.id) == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         tmpInfo.text = $" {room.name} ( {room.id} )\n ( {room.clients.Count} / 20 ) {(room.isPlaying ? "Playing" : "Waiting")}";
-        if (K.rooms.Find(x => x.id == room.id) == null) Destroy(gameObject);
     }
 }

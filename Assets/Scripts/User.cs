@@ -138,7 +138,8 @@ public class User : MonoBehaviour
 
     private bool OnExitRoomResult(HostID remote, RmiContext rmiContext, string id, string roomId, bool isSuccess)
     {
-        return true;
+        if (isSuccess) RoomManager.Instance.ExitRoom(roomId);
+        return isSuccess;
     }
 
     private bool OnGameReadyReflection(HostID remote, RmiContext rmiContext, string id)
